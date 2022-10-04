@@ -25,6 +25,7 @@ namespace UserMaintenance
             listBox1.DisplayMember = "FullName";
             listBox1.ValueMember = "ID";
             button2.Text = Resource1.Export_to_file;
+            button3.Text = Resource1.Delete;
         }
 
         BindingList<User> users = new BindingList<User>();
@@ -48,6 +49,16 @@ namespace UserMaintenance
                 }
                 sw.Close();
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var torlendo = (Guid)listBox1.SelectedValue;
+            var eredmeny = from x in users
+                           where x.ID == torlendo
+                           select x;
+            users.Remove(eredmeny.FirstOrDefault());
+            
         }
     }
 }
