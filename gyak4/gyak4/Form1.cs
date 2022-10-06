@@ -22,18 +22,48 @@ namespace gyak4
         Excel.Workbook xlWb;
         Excel.Worksheet xlSheet;
 
-       
+             
 
         public Form1()
         {
             InitializeComponent();
             LoadData();
+            CreateExcel();
         }
 
         private void LoadData()
         {
             flats = context.Flats.ToList();
         }
+        
+        private void CreateExcel()
+        {
+            try
+            {
+                xlApp = new Excel.Application();
+
+                xlWb = xlApp.Workbooks.Add(Missing.Value);
+
+                xlSheet = xlWb.ActiveSheet;
+
+                //CreateTable()
+
+                xlApp.Visible = true;
+                xlApp.UserControl = true;
+            }
+            catch (Exception ex)
+            {
+
+                string errMsg= string.Format("Error: {0}\nLine: {1}", ex.Message,ex.Source);
+                MessageBox.Show(errMsg, "Error");
+
+                xlWb.Close();
+                xlApp.Quit();
+                xlWb = null;
+                xlApp = null;
+            }
+        }
+
         
         
 
