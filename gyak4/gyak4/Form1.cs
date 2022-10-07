@@ -106,37 +106,38 @@ namespace gyak4
                 values[counter, 5] = f.NumberOfRooms;
                 values[counter, 6] = f.FloorArea;
                 values[counter, 7] = f.Price;
-                values[counter, 8] = "";
+                values[counter, 8] = 1000000*f.Price/f.FloorArea;
                 counter++;
 
-                xlSheet.get_Range(GetCell(2, 1),
-                GetCell(1 + values.GetLength(0), values.GetLength(1))).Value2 = values;
-
-                Excel.Range headerRange = xlSheet.get_Range(GetCell(1, 1), GetCell(1, headers.Length));
-                headerRange.Font.Bold = true;
-                headerRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
-                headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-                headerRange.EntireColumn.AutoFit();
-                headerRange.RowHeight = 40;
-                headerRange.Interior.Color = Color.LightBlue;
-                headerRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
-
-                int lastRowID = xlSheet.UsedRange.Rows.Count;
-
-                Excel.Range firstColoumn = xlSheet.get_Range(GetCell(2, 1), GetCell(lastRowID, 1));
-                firstColoumn.Font.Bold = true;
-                firstColoumn.Interior.Color = Color.LightYellow;
-
-                Excel.Range lastColoumn = xlSheet.get_Range(GetCell(2,headers.Length), GetCell(lastRowID, headers.Length));
-                lastColoumn.Interior.Color = Color.LightGreen;
-                lastColoumn.NumberFormat = "0.00";
-
-
-
-                Excel.Range wholeTable = xlSheet.get_Range(GetCell(1, 1), GetCell(lastRowID, headers.Length));
-                wholeTable.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+                
 
             }
+
+            xlSheet.get_Range(GetCell(2, 1),
+                GetCell(1 + values.GetLength(0), values.GetLength(1))).Value2 = values;
+
+            Excel.Range headerRange = xlSheet.get_Range(GetCell(1, 1), GetCell(1, headers.Length));
+            headerRange.Font.Bold = true;
+            headerRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+            headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            headerRange.EntireColumn.AutoFit();
+            headerRange.RowHeight = 40;
+            headerRange.Interior.Color = Color.LightBlue;
+            headerRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+
+            int lastRowID = xlSheet.UsedRange.Rows.Count;
+
+            Excel.Range wholeTable = xlSheet.get_Range(GetCell(1, 1), GetCell(lastRowID, headers.Length));
+            wholeTable.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+
+            Excel.Range firstColoumn = xlSheet.get_Range(GetCell(2, 1), GetCell(lastRowID, 1));
+            firstColoumn.Font.Bold = true;
+            firstColoumn.Interior.Color = Color.LightYellow;
+
+            Excel.Range lastColoumn = xlSheet.get_Range(GetCell(2, headers.Length), GetCell(lastRowID, headers.Length));
+            lastColoumn.Interior.Color = Color.LightGreen;
+            lastColoumn.NumberFormat = "0.00";
+
 
         }
 
