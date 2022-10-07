@@ -107,9 +107,7 @@ namespace gyak4
                 values[counter, 6] = f.FloorArea;
                 values[counter, 7] = f.Price;
                 values[counter, 8] = 1000000*f.Price/f.FloorArea;
-                counter++;
-
-                
+                counter++;               
 
             }
 
