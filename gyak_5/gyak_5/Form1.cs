@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using gyak_5.Entities;
 using gyak_5.MnbServiceReference;
 
 
@@ -18,9 +19,12 @@ namespace gyak_5
         {
             InitializeComponent();
             ExchangeRates();
-
+            dataGridView1.DataSource = Rates;
         }
 
+        List<GetExchangeRatesRequestBody> ExchangeRateData = new List<GetExchangeRatesRequestBody>();
+
+        BindingList<RateData> Rates = new BindingList<RateData>();
         
 
         private void ExchangeRates()
