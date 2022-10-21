@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using gyak_5.Entities;
 using gyak_5.MnbServiceReference;
 
@@ -20,6 +21,7 @@ namespace gyak_5
             InitializeComponent();
             ExchangeRates();
             dataGridView1.DataSource = Rates;
+            GetXML();
         }
 
         List<GetExchangeRatesRequestBody> ExchangeRateData = new List<GetExchangeRatesRequestBody>();
@@ -27,7 +29,7 @@ namespace gyak_5
         BindingList<RateData> Rates = new BindingList<RateData>();
         
 
-        private void ExchangeRates()
+        private string ExchangeRates()
         {
             var mnbService = new MNBArfolyamServiceSoapClient();
 
@@ -40,7 +42,27 @@ namespace gyak_5
 
             var response = mnbService.GetExchangeRates(request);
             var result = response.GetExchangeRatesResult;
-            
+            GetXML(result);
+        }
+
+        private void GetXML(string result)
+        {
+            XmlDocument xml = new XmlDocument();
+            xml.LoadXml(result);
+            foreach (XmlElement x in xml.DocumentElement)
+            {
+                var firstchild = (XmlElement)x.ChildNodes[0];
+
+                RateData r = new RateData
+                {
+                    Date = DateTime.Parse(x.GetAttribute("date")),
+                    Currency = firstchild.GetAttribute("curr")
+                };
+
+                
+
+                Rates.Add(r);
+            }
         }
     }
 }
