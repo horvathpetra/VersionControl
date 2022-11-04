@@ -1,4 +1,5 @@
-﻿using System;
+﻿using gyak6.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +18,9 @@ namespace gyak6
             InitializeComponent();
         }
 
-        
+        List<Ball> _balls = new List<Ball>();
+
+        private BallFactory _factory;
+        public BallFactory  Factory { get; set; }
     }
 }
