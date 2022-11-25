@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.Activities;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,21 @@ namespace UnitTestExample.Controllers
             var newAccount = AccountManager.CreateAccount(account);
 
             return newAccount;
+        }
+
+        [   Test,
+            TestCase("irf@uni - corvinus.hu", "Abcd1234"),
+            TestCase("irf@uni-corvinus.hu", "Abcd1234567"),
+        ]
+        public void TestRegisterHappyPath(string email, string password)
+        {
+            var ac = new AccountController();
+            var result = ac.Register(email, password);
+            Assert.AreEqual(password, result.Password);
+            Assert.AreEqual(email, result.Email);
+            Assert.AreNotEqual(Guid.Empty, result.ID);
+
+
         }
 
         public bool ValidateEmail(string email)
