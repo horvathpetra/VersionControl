@@ -54,9 +54,27 @@ namespace UnitTestExample.Controllers
             Assert.AreEqual(email, result.Email);
             Assert.AreNotEqual(Guid.Empty, result.ID);
 
-
         }
 
+        [Test,
+            TestCase("ino@korvo.hu", "Abcd1234"),
+            TestCase("info@uni-corvinus.hu","abcdeFgh"),
+            TestCase("korvo@ako.com","12345678"),
+            TestCase("uni@korvohu","Password123")]
+        public void TestRegisterValidateException(string email, string password)
+        {
+            var ac = new AccountController();
+            try
+            {
+                var result = ac.Register(email, password);
+                Assert.Fail();
+            }
+            catch (Exception ex)
+            {
+
+                Assert.IsInstanceOf<ValidationException>(ex);
+            }
+        }
         public bool ValidateEmail(string email)
         {            
             return Regex.IsMatch(
