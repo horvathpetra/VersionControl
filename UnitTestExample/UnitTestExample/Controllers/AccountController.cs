@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Moq;
+using NUnit.Framework;
 using System;
 using System.Activities;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace UnitTestExample.Controllers
             if(!ValidateEmail(email))
                 throw new ValidationException(
                     "A megadott e-mail cím nem megfelelő!");
-            if(!ValidateEmail(email))
+            if(!ValidatePassword(password))
                 throw new ValidationException(
                     "A megadottt jelszó nem megfelelő!\n" +
                     "A jelszó legalább 8 karakter hosszú kell legyen, csak az angol ABC betűiből és számokból állhat, és tartalmaznia kell legalább egy kisbetűt, egy nagybetűt és egy számot.");
@@ -49,10 +50,16 @@ namespace UnitTestExample.Controllers
         public void TestRegisterHappyPath(string email, string password)
         {
             var ac = new AccountController();
+
+            var accountServiceMock = new Mock<IAccountManager>(MockBehavior.Strict);
+            accountServiceMock.Setup(m => m.CreateAccount(It.IsAny<Account>())).Returns<Account>(a => a);
+            ac.AccountManager = accountServiceMock.Object;
+
             var result = ac.Register(email, password);
             Assert.AreEqual(password, result.Password);
             Assert.AreEqual(email, result.Email);
             Assert.AreNotEqual(Guid.Empty, result.ID);
+            accountServiceMock.Verify(m => m.CreateAccount(result), Times.Once);
 
         }
 
