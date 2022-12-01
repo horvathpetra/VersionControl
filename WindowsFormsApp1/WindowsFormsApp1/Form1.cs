@@ -20,13 +20,20 @@ namespace WindowsFormsApp1
             Population = GetPopulation(@"C:\Temp\nép-teszt.csv");
             BirthProbabilities = GetBirthProbabilities(@"C:\Temp\születés.csv");
             DeathProbabilities = GetDeathProbabilities(@"C:\Temp\halál.csv");
-            dataGridView1.DataSource = Population;
+            //dataGridView1.DataSource = Population;
 
+        }
+
+        List<Person> Females = new List<Person>();
+        List<Person> Males = new List<Person>();
+
+        private void Start()
+        {
             for (int year = 2005; year < 2025; year++)
             {
                 for (int i = 0; i < Population.Count(); i++)
                 {
-                    SimStep(year,Population[i]);
+                    SimStep(year, Population[i]);
                 }
 
                 int NumberOfMales = (from x in Population
@@ -143,6 +150,17 @@ namespace WindowsFormsApp1
             }
             return DeathProbabilities;
 
+        }
+
+        private void StartBtn_Click(object sender, EventArgs e)
+        {
+            Start();
+        }
+
+        private void BrowseBtn_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == DialogResult.OK) filePathTextBox.Text = ofd.FileName;
         }
     }
 }

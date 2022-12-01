@@ -29,39 +29,93 @@ namespace WindowsFormsApp1
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.BrowseBtn = new System.Windows.Forms.Button();
+            this.StartBtn = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.filePathTextBox = new System.Windows.Forms.TextBox();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // BrowseBtn
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(24, 12);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(764, 424);
-            this.dataGridView1.TabIndex = 0;
+            this.BrowseBtn.Location = new System.Drawing.Point(517, 30);
+            this.BrowseBtn.Name = "BrowseBtn";
+            this.BrowseBtn.Size = new System.Drawing.Size(116, 23);
+            this.BrowseBtn.TabIndex = 1;
+            this.BrowseBtn.Text = "Browse";
+            this.BrowseBtn.UseVisualStyleBackColor = true;
+            this.BrowseBtn.Click += new System.EventHandler(this.BrowseBtn_Click);
+            // 
+            // StartBtn
+            // 
+            this.StartBtn.Location = new System.Drawing.Point(639, 30);
+            this.StartBtn.Name = "StartBtn";
+            this.StartBtn.Size = new System.Drawing.Size(116, 23);
+            this.StartBtn.TabIndex = 2;
+            this.StartBtn.Text = "Start";
+            this.StartBtn.UseVisualStyleBackColor = true;
+            this.StartBtn.Click += new System.EventHandler(this.StartBtn_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(42, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 17);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Záróév";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(199, 30);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(94, 17);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Népesség fájl";
+            // 
+            // filePathTextBox
+            // 
+            this.filePathTextBox.Location = new System.Drawing.Point(314, 30);
+            this.filePathTextBox.Name = "filePathTextBox";
+            this.filePathTextBox.Size = new System.Drawing.Size(188, 22);
+            this.filePathTextBox.TabIndex = 5;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(102, 29);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(75, 22);
+            this.numericUpDown1.TabIndex = 6;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.filePathTextBox);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.StartBtn);
+            this.Controls.Add(this.BrowseBtn);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button BrowseBtn;
+        private System.Windows.Forms.Button StartBtn;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox filePathTextBox;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }
 
