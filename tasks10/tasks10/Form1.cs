@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WorldsHardestGame;
 
 namespace tasks10
 {
@@ -15,6 +16,12 @@ namespace tasks10
         public Form1()
         {
             InitializeComponent();
+            ga = gc.ActivateDisplay();
+            this.Controls.Add(ga);
         }
+
+        GameController gc = new GameController();
+        GameArea ga;
+        
     }
 }
